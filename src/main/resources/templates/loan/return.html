@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Confirmation Return</h5>
+                        <form method="post" th:action="@{/loans/return}">
+                            <input type="hidden" name="id" id="id" th:value="${id}">
+                            <p>Apakah sudah yakin buku dengan judul <span th:text="${loan.titleBook}"></span>
+                                yang dipinjam oleh <span th:text="${loan.nameCustomer}"> </span>akan di kembali</p>
+                            <button type="submit" class="btn btn-primary">Return</button>
+                            <a th:href="@{/loans}"><button type="button" class="btn btn-primary">Back to Loan</button></a>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

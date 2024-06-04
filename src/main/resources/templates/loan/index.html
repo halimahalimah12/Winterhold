@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('loans')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+
+    <section class="section">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Loan Index</h5>
+                        <form method="get" th:action="@{/loans}" class="row row-cols-lg-auto g-3 align-items-center">
+                            <div class="col-12">
+                                <input type="text" class="form-control"
+                                       placeholder="Book Title" name="titleBook">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control"
+                                       placeholder="Customer Name" name="customerName">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+
+                        <a th:href="@{/loans/insert}">
+                            <button type="button" class="btn btn-outline-primary">Add loans</button>
+                        </a>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Book Title</th>
+                                <th>Customer Name</th>
+                                <th>Loan Date</th>
+                                <th>Due Date</th>
+                                <th>Return Date</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="loan : ${loans}">
+                                <td>
+                                    <a th:href="@{/loans/{id}/detail (id=${loan.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Loan Detail">
+                                        <i class="bi bi-collection"></i>
+                                    </a>
+                                    <a th:href="@{/loans/{id}/update (id=${loan.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Edit Loan">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a th:href="@{/loans/{id}/return (id=${loan.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Return Loan">
+                                        <i class="bi bi-save"></i>
+                                    </a>
+                                </td>
+                                <td th:text="${loan.titleBook}"></td>
+                                <td th:text="${loan.customerName}"></td>
+                                <td th:text="${loan.loanDate}"></td>
+                                <td th:text="${loan.dueDate}"></td>
+                                <td th:text="${loan.returnDate}"></td>
+                                <td>
+                                   <span th:text="${loan.isLate}"  class="badge rounded-pill bg-info text-dark"></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

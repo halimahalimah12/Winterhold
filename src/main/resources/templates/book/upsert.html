@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Book (Update/Insert)</h5>
+                        <form method="post" th:action="@{/category/{id}/books/upsert (id=${category.name})}" th:object="${dto}"
+                              enctype="multipart/form-data">
+                            <input type="hidden" th:value="*{isBorrowed}" name="isBorrowed">
+                            <div class="row mb-3">
+                                <label for="code" class="col-sm-2 col-form-label">Code*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="code" id="code"
+                                           th:field="*{code}">
+                                    <div  class="error"   th:errors="*{code}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="title" class="col-sm-2 col-form-label">Title*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="title" id="title"
+                                           th:field="*{title}">
+                                    <div  class="error"   th:errors="*{title}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="categoryId" class="col-sm-2 col-form-label">Category*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" th:value="${category.name}"
+                                           name="categoryId"id="categoryId"  readonly>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Auhtor</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="authorId" aria-label="Default select example">
+                                        <option th:value="null" >Open this select menu</option>
+                                        <option th:each="dropdown :${authorDropdown}"
+                                                th:text="${dropdown.text}"
+                                                th:value="${dropdown.value}"
+                                                th:selected="(*{authorId} == ${dropdown.value})"
+                                                th:field="*{authorId}"
+                                        ></option>
+                                    </select>
+                                    <div  class="error"   th:errors="*{authorId}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="releaseDate" class="col-sm-2 col-form-label">Release Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="releaseDate" id="releaseDate" th:value="*{releaseDate}">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="totalPage" class="col-sm-2 col-form-label">Total Page</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" th:field="*{totalPage}"
+                                           name="totalPage" id="totalPage">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="summary" class="col-sm-2 col-form-label">Summary</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" style="height: 100px" name="summary" id="summary"
+                                              th:text="*{summary}"th:field="*{summary}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Loan (Update/Insert)</h5>
+                        <form method="post" th:action="@{/loans/upsert }" th:object="${dto}"
+                              enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{id}" name="id">
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Customer</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="customerId" aria-label="Default select example">
+                                        <option th:value="null" >Open this select menu</option>
+                                        <option th:each="customer :${customerDropdown}"
+                                                th:text="${customer.text}"
+                                                th:value="${customer.value}"
+                                                th:selected="(*{customerId} == ${customer.value})"
+                                        ></option>
+                                    </select>
+                                    <div  th:errors="*{customerId}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Book</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" name="bookId" aria-label="Default select example">
+                                        <option th:value="null">Open this select menu</option>
+                                        <option th:each="dropdown :${bookDropdown}"
+                                                th:text="${dropdown.text}"
+                                                th:value="${dropdown.value}"
+                                                th:selected="(*{bookId} == ${dropdown.value})"
+                                        ></option>
+                                    </select>
+                                    <div  th:errors="*{bookId}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="loanDate" class="col-sm-2 col-form-label">Loan Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="loanDate" id="loanDate" th:value="*{loanDate}">
+                                    <div  th:errors="*{loanDate}"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="note" class="col-sm-2 col-form-label">Note</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"  name="note" id="note" th:text="*{note}"th:field="*{note}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <a th:href="@{/loans}"><button type="button" class="btn btn-primary">Back to index</button> </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

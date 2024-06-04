@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer (Update/Insert)</h5>
+                        <form method="post" th:action="@{/customers/upsert }" th:object="${dto}"
+                              enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{membershipExpireDate}" name="membershipExpireDate">
+                            <div class="row mb-3">
+                                <label for="membershipNumber" class="col-sm-2 col-form-label">Membership Number*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="membershipNumber" id="membershipNumber"th:field="*{membershipNumber}">
+                                    <div  th:errors="*{membershipNumber}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="firstName" class="col-sm-2 col-form-label">First Name*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="firstName" id="firstName" th:field="*{firstName}">
+                                    <div  th:errors="*{firstName}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="lastName" id="lastName"th:field="*{lastName}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="birthDate" class="col-sm-2 col-form-label">Birth Date*</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="birthDate" id="birthDate" th:value="*{birthDate}">
+                                </div>
+                            </div>
+                            <fieldset class="row mb-3">
+                                <legend class="col-form-label col-sm-2 pt-0">Gender*</legend>
+                                <div class="col-sm-10">
+                                    <div class="form-check" th:each="gender:${genders}">
+                                        <input class="form-check-input" type="radio" name="gender" id="gender" th:value="${gender.label}"  th:checked="(${gender.label} == *{gender})">
+                                        <label class="form-check-label" for="gender" th:text="${gender.label}" >
+                                        </label>
+                                    </div>
+                                    <div  th:errors="*{gender}"></div>
+                                </div>
+                            </fieldset>
+
+                            <div class="row mb-3">
+                                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" th:field="*{phone}"name="phone" id="phone">
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="address" class="col-sm-2 col-form-label">Address</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control"  name="address" id="address"th:text="*{address}"th:field="*{address}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <a th:href="@{/customers}"><button type="button" class="btn btn-primary">Back to index</button> </a>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Author (Update/Insert)</h5>
+                        <form method="post" th:action="@{/authors/upsert}" th:object="${dto}"
+                              enctype="multipart/form-data">
+                            <input type="hidden" name="id" th:field="*{id}">
+                            <div class="row mb-3">
+                                <label for="title" class="col-sm-2 col-form-label">Title*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control " name="title" id="title" th:field="*{title}" >
+                                    <div class="error" th:errors="*{title}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="firstName" class="col-sm-2 col-form-label">First Name*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="firstName" id="firstName"th:field="*{firstName}">
+                                    <div  class="error" th:errors="*{firstName}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="lastName" id="lastName"th:field="*{lastName}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="birthDate" class="col-sm-2 col-form-label">Birth Date*</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="birthDate" id="birthDate"th:value="*{birthDate}">
+                                    <div  class="error"  th:errors="*{birthDate}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="deceaseDate" class="col-sm-2 col-form-label">Decease Date</label>
+                                <div class="col-sm-10">
+                                    <input type="date" class="form-control" name="deceaseDate" id="deceaseDate"
+                                           th:value="*{deceaseDate}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="education" class="col-sm-2 col-form-label">Education</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="education" id="education"
+                                           th:field="*{education}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="summary" class="col-sm-2 col-form-label">Summary</label>
+                                <div class="col-sm-10">
+                                    <textarea class="form-control" style="height: 100px" name="summary" id="summary"
+                                              th:text="*{summary}"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

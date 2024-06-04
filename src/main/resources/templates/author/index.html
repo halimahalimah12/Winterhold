@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+
+    <section class="section">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Author Index</h5>
+                        <form method="get" th:action="@{/authors}" class="row row-cols-lg-auto g-3 align-items-center" >
+                            <div class="col-12">
+                                <input type="text" class="form-control" id="inlineFormInputGroupUsername"
+                                       placeholder="Name" name="name">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+
+                        <a th:href="@{/authors/insert}" >
+                            <button type="button" class="btn btn-outline-primary">Add Author</button>
+                        </a>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Full Name</th>
+                                <th>Age</th>
+                                <th>Status</th>
+                                <th>Education</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="author : ${authors}">
+                                <td>
+                                    <a th:href="@{/authors/detail/{id} (id=${author.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Author's Book">
+                                        <i class="bi bi-collection"></i>
+                                    </a>
+                                    <a th:href="@{/authors/update/{id} (id=${author.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Author's Edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a th:href="@{/authors/delete/{id} (id=${author.id})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Delete Author">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </td>
+                                <td th:text="${author.name}"></td>
+                                <td th:text="${author.age}"></td>
+                                <td th:text="${author.status}"></td>
+                                <td th:text="${author.education}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="modal fade" id="basicModal" tabindex="-1" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Basic Modal</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="auhtorName"></p>
+                                        <p id="authorAge"></p>
+                                        <p id="authorStatus"></p>
+                                        <p id="authorEducation"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        $('#basicModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var authorData = button.attr('th:data-author'); // Extract info from data-* attributes
+            var author = JSON.parse(authorData);
+
+            var modal = $(this);
+            modal.find('.modal-body #authorName').text('Name: ' + author.name);
+            modal.find('.modal-body #authorAge').text('Age: ' + author.age);
+            modal.find('.modal-body #authorStatus').text('Status: ' + author.status);
+            modal.find('.modal-body #authorEducation').text('Education: ' + author.education);
+        });
+    });
+</script>
+</body>
+</html>

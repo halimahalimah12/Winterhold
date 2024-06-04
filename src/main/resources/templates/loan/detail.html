@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body" th:object="${detailLoan}">
+
+                        <h5 class="card-title">Book</h5>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Title</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{titleBook}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Category</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{category}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Author</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{nameAuthor}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Floor</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{floor}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Isle</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{isle}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Bay</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{bay}"></div>
+                        </div>
+
+                        <h5 class="card-title">Customer</h5>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label ">Membership Number</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{membershipNumber}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Name Customer</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{nameCustomer}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Phone</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{phone}"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-3 col-md-4 label">Membership Expire Date</div>
+                            <div class="col-lg-9 col-md-8" th:text="*{membershipExpireDate}"></div>
+                        </div>
+                        <div class="row" style="margin-top: 32px;">
+                            <a th:href="@{/loans}"><button type="button" class="btn btn-primary">Bact to Loan</button></a>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

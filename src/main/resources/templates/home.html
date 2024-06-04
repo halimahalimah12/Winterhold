@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+    <div class="card">
+        <img th:src="@{/resources/image/library2.jpg}" class="card-img-top" alt="...">
+        <div class="card-img-overlay">
+            <h5 class="card-title">Winterhold Library</h5>
+            <p class="card-text">Knowledge is the besr weapon you have, please
+                find some fascinating books we have. This app will help you do that, as
+                long as you keep extend your membership! (its totally free!)
+            </p>
+        </div>
+    </div>
+
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

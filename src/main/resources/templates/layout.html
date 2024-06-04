@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="head(title)">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title th:text="'Winterhold - '+ ${title}"></title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link th:href="@{/resources/tamplate/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/resources/tamplate/bootstrap-icons/bootstrap-icons.css}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link th:href="@{/resources/tamplate/css/style.css}" rel="stylesheet">
+
+    <!-- Vendor JS Files -->
+    <script th:src="@{/resources/tamplate/bootstrap/js/bootstrap.bundle.min.js}" defer></script>
+
+    <!-- Template Main JS File -->
+    <script th:src="@{/resources/tamplate/js/main.js}" defer></script>
+
+    <!-- Validation    -->
+    <script th:src="@{/resources/tamplate/tinymce/tinymce.min.js}" defer></script>
+
+</head>
+
+<body>
+<header th:fragment="header" id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+            <span class="d-none d-lg-block">Winterhold</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+
+            <li class="nav-item dropdown pe-3">
+                <form method="post" th:action="@{/logout}">
+                    <button class="btn btn-outline-primary"><i class="bi bi-box-arrow-right"></i>Sign Out</button>
+                </form>
+            </li>
+
+        </ul>
+    </nav>
+
+</header>
+
+<aside th:fragment="sidebar" id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " th:href="@{/}">
+                <i class="bi bi-house-fill"></i>
+                <span>Home</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" th:href="@{/authors}">
+                <i class="bi bi-pen"></i>
+                <span>Authors</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" th:href="@{/categories}">
+                <i class="bi bi-book"></i>
+                <span>Books</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" th:href="@{/customers}">
+                <i class="bi bi-people"></i>
+                <span>Customers</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" th:href="@{/loans}">
+                <i class="bi bi-inbox"></i>
+                <span>Loan</span>
+            </a>
+        </li>
+
+    </ul>
+
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main">
+
+</main>
+
+<!-- ======= Footer ======= -->
+<footer th:fragment="footer" id="footer" class="footer">
+    <div class="copyright">
+        &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
+    </div>
+
+</footer>
+
+</body>
+
+</html>

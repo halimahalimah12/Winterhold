@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Category')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+
+    <section class="section">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Books</h5>
+                        <form method="get" th:action="@{/categories}" class="row row-cols-lg-auto g-3 align-items-center">
+                            <div class="col-12">
+                                <input type="text" class="form-control"   placeholder="Category Name" name="name">
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+
+                        <a th:href="@{/categories/insert}">
+                            <button type="button" class="btn btn-outline-primary">Add Category</button>
+                        </a>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>Category</th>
+                                <th>Floor</th>
+                                <th>Isle</th>
+                                <th>Bay</th>
+                                <th>Total Books</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="category : ${categories}">
+                                <td>
+                                    <a th:href="@{/category/{id}/books (id=${category.name})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Categories Book">
+                                        <i class="bi bi-collection"></i>
+                                    </a>
+                                    <a th:href="@{/categories/update/{id} (id=${category.name})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Edit Category">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a th:href="@{/categories/delete/{id} (id=${category.name})}" data-bs-toggle="tooltip"
+                                       data-bs-placement="bottom" data-bs-original-title="Delete Category">
+                                        <i class="bi bi-trash-fill"></i>
+                                    </a>
+                                </td>
+                                <td th:text="${category.name}"></td>
+                                <td th:text="${category.floor}"></td>
+                                <td th:text="${category.isla}"></td>
+                                <td th:text="${category.bay}"></td>
+                                <td th:text="${category.totalBook}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout :: head('Author')}">
+</head>
+<body>
+<header th:replace="~{layout :: header}"></header>
+<aside th:replace="~{layout :: sidebar}"></aside>
+<main id="main" class="main">
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Author (Update/Insert)</h5>
+                        <form method="post" th:action="@{/categories/upsert}" th:object="${dto}"
+                              enctype="multipart/form-data">
+                            <div class="row mb-3">
+                                <label for="name" class="col-sm-2 col-form-label">Category Name*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="name" id="name" th:field="*{name}">
+                                    <div  th:errors="*{name}"></div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <label for="floor" class="col-sm-2 col-form-label">Floor*</label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" name="floor" id="floor"th:field="*{floor}">
+                                    <div  th:errors="*{floor}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="isle" class="col-sm-2 col-form-label">Isle*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="isle" id="isle"th:field="*{isle}">
+                                    <div  th:errors="*{isle}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="bay" class="col-sm-2 col-form-label">Bay*</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="bay" id="bay"th:field="*{bay}">
+                                    <div  th:errors="*{bay}"></div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>
